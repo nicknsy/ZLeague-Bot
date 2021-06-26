@@ -36,4 +36,4 @@ class TrackedGame:
             if team_name not in self.teams:
                 self.teams[team_name] = TrackedTeam()
 
-            self.teams[team_name].update(team["totalPoints"], team["numberOfGames"])
+            self.teams[team_name].update(team["numberOfGames"], team["totalPoints"])

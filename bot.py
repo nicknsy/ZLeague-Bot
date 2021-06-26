@@ -85,11 +85,11 @@ async def on_reaction_add(reaction, user):
             team_name = game.team_name
 
             reaction_switch = {
-                "1️⃣": 1,
-                "2️⃣": 2,
-                "3️⃣": 3,
-                "4️⃣": 4,
-                "5️⃣": 5
+                "1️⃣": 0,
+                "2️⃣": 1,
+                "3️⃣": 2,
+                "4️⃣": 3,
+                "5️⃣": 4
             }
             if reaction.emoji in reaction_switch:
                 index = reaction_switch[reaction.emoji]
@@ -98,7 +98,7 @@ async def on_reaction_add(reaction, user):
                 team_name = game.stats["standings"][index]["name"]
 
             if team_points.is_accurate:
-                message = "```{0}'s Best Two Games:\n(1) {1} Points\n (2) {2} Points\n\n{3} Total Points"\
+                message = "```{0}'s Best Two Games:\n(1) {1} Points\n(2) {2} Points\n\n{3} Total Points```"\
                     .format(team_name, team_points.best_game, team_points.second_best_game, team_points.best_game + team_points.second_best_game)
             else:
                 message = "Could not calculate this team's best two games."
