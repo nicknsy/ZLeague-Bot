@@ -93,9 +93,9 @@ async def on_reaction_add(reaction, user):
             }
             if reaction.emoji in reaction_switch:
                 index = reaction_switch[reaction.emoji]
-                teams = list(game.teams.values())
-                team_points = teams[index]
-                team_name = game.stats["standings"][index]["name"]
+                standings = game.stats["standings"]
+                team_name = standings[index]["name"]
+                team_points = game.teams[team_name]
 
             if team_points.is_accurate:
                 message = "```{0}'s Best Two Games:\n(1) {1} Points\n(2) {2} Points\n\n{3} Total Points```"\
