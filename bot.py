@@ -26,6 +26,7 @@ bot_command_prefix = config_bot["CommandPrefix"]
 bot_update_interval = int(config_bot["UpdateInterval"])
 bot_file_user = config_bot["FileSendUser"]
 bot_debug = config_bot.getboolean("DebugMode")
+bot_message_remove_interval = float(config_bot["MessageRemoveInterval"])
 
 null_stdout = open(os.devnull, "w")
 tournament_id_pattern = re.compile("[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}")
@@ -107,7 +108,7 @@ async def on_reaction_add(reaction, user):
                 message = "Could not calculate this team's best two games."
 
             await reaction.remove(user)
-            await reaction.message.channel.send(message)
+            await reaction.message.channel.send(message, delete_after=bot_message_remove_interval)
             break
 
 
