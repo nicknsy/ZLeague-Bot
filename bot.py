@@ -10,7 +10,7 @@ import re
 from TrackedGame import TrackedGame
 from discord.ext import tasks
 
-live_scoring = "https://www.zleague.gg/warzone/live-scoring?tournamentId={0}"  # id
+live_scoring = "https://www.zleague.gg/warzone/live-scoring?tournamentId={0}&division={1}"  # id
 all_standings = "https://zleague-api.herokuapp.com/warzone/tournament/{0}/standings"  # id
 
 config = configparser.ConfigParser()
@@ -224,6 +224,7 @@ async def send_update_message(game, edit):
     # Stop tracking if tournament is over
     # But don't stop tracking if a finalized tournament is needed for testing
     title = u"\U0001F48E " + tournament["title"]
+    division = str(game.division)
     if tournament["tournamentStatus"] == "FINALIZED":
         title += " - [FINALIZED]"
         if not bot_debug:
@@ -234,8 +235,8 @@ async def send_update_message(game, edit):
     image_url = await file_to_url(file)
     os.remove(file_name)
 
-    embed = discord.Embed(title=title, url=live_scoring.format(tournament["id"]),
-                          description="Division " + str(game.division), color=0x9A63B0)
+    embed = discord.Embed(title=title, url=live_scoring.format(tournament["id"], division),
+                          description="Division " + division, color=0x9A63B0)
     embed.set_image(url=image_url)
     embed.set_footer(text="Updated " + time.strftime("%H:%M:%S", time.localtime()))
 
