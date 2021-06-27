@@ -1,6 +1,11 @@
+# Project-created files
 .idea/
 __pycache__/
 
-.DS_Store
+# Program-created files
 config.ini
 scoreboard-*.png
+
+# OS-related files
+.DS_Store
+*.save

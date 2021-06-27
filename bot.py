@@ -99,7 +99,10 @@ async def on_reaction_add(reaction, user):
 
             if team_points.is_accurate:
                 message = "```{0}'s Best Two Games:\n(1) {1} Points\n(2) {2} Points\n\n{3} Total Points```"\
-                    .format(team_name, team_points.best_game, team_points.second_best_game, team_points.best_game + team_points.second_best_game)
+                    .format(team_name,
+                            team_points.best_game,
+                            team_points.second_best_game,
+                            team_points.current_total_points)
             else:
                 message = "Could not calculate this team's best two games."
 
