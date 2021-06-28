@@ -180,8 +180,7 @@ async def send_update_message(game, edit):
     standings = game.stats["standings"]
     values = "name", "numberOfGames", "totalWins", "bestKills", "bestPlacementPoints", "totalPoints"
 
-    reaction_emojis = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"]
-    team_marker_emoji = "⭐"
+    reaction_emojis = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "⭐"]
     inner_content = ""
     hit_team = False
 
@@ -190,7 +189,6 @@ async def send_update_message(game, edit):
         team = standings[i]
         if team["name"] == game.team_name:
             inner_content += "<tr class='active-row'>"
-            reaction_emojis[i] = team_marker_emoji
             hit_team = True
         else:
             inner_content += "<tr>"
@@ -202,7 +200,6 @@ async def send_update_message(game, edit):
         for team in standings:
             if team["name"] == game.team_name:
                 inner_content += "<tr class='active-row'>"
-                reaction_emojis.append(team_marker_emoji)
                 for value in values:
                     inner_content += "<td>" + str(team[value]) + "</td>"
                 inner_content += "</tr>"
