@@ -22,9 +22,9 @@ class TrackedGame:
     def update(self):
         self.last_checked = int(time.time())
 
-        if "tournament" not in self.stats:
-            tournament_request = requests.get(self.tourney_api.format(self.tournament_id))
-            self.stats["tournament"] = tournament_request.json()
+        # Grab tournament and standings data from API
+        tournament_request = requests.get(self.tourney_api.format(self.tournament_id))
+        self.stats["tournament"] = tournament_request.json()
 
         standings_request = requests.get(self.standings_api.format(self.tournament_id, self.division))
         self.stats["standings"] = standings_request.json()
